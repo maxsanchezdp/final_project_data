@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import os
-import pathlib
 import librosa
 from scipy.stats import kurtosis
 from scipy.stats import skew
@@ -9,7 +8,7 @@ from scipy.stats import skew
 # directories
 AUDIO_DIR = './Data/genres/'
 TEST_DIR = './Data/test_songs/'
-SPOTI_DIR='./Data/spotify_songs/'
+SPOTI_DIR = './Data/spotify_songs/'
 
 # Dictionary for genres label encoding:
 GENRES = {'blues': 0, 'classical': 1, 'country': 2, 'disco': 3, 'hiphop': 4,
@@ -17,9 +16,9 @@ GENRES = {'blues': 0, 'classical': 1, 'country': 2, 'disco': 3, 'hiphop': 4,
 
 
 def split_songs(X, window, overlap):
-    '''
+    """
     Function to split a song into multiple songs.
-    '''
+    """
 
     # Temporary lists to hold results
     temp_X = []
@@ -37,14 +36,13 @@ def split_songs(X, window, overlap):
     return np.array(temp_X)
 
 
-
-def get_features(y, sr, n_fft = 1024, hop_length = 512):
-    '''
+def get_features(y, sr, n_fft=1024, hop_length=512):
+    """
     Get selected features for a song using numpy and librosa
-    '''
+    """
 
     # Selected features:
-    features = {'centroid': None, 'roloff': None, 'flux': None, 'rmse': None, 'zcr': None, 'chroma':None}
+    features = {'centroid': None, 'roloff': None, 'flux': None, 'rmse': None, 'zcr': None, 'chroma': None}
     
     # Using librosa to calculate the features
     features['centroid'] = librosa.feature.spectral_centroid(y, sr=sr, n_fft=n_fft, hop_length=hop_length).ravel()
@@ -55,9 +53,9 @@ def get_features(y, sr, n_fft = 1024, hop_length = 512):
     features['chroma'] = librosa.feature.chroma_stft(y=y, sr=sr, n_fft=n_fft, hop_length=hop_length).ravel()
     
     # Treatment of MFCC feature
-    mfcc = librosa.feature.mfcc(y, n_fft = n_fft, hop_length = hop_length, n_mfcc=13)
+    mfcc = librosa.feature.mfcc(y, n_fft=n_fft, hop_length=hop_length, n_mfcc=13)
     for idx, v_mfcc in enumerate(mfcc):
-        features['mfcc_{}'.format(idx)] = v_mfcc.ravel()
+        features[f'mfcc_{idx}'] = v_mfcc.ravel()
         
     # Calculate statistics for each feature:
     def get_moments(descriptors):
@@ -71,21 +69,21 @@ def get_features(y, sr, n_fft = 1024, hop_length = 512):
     
     dict_agg_features = get_moments(features)
     
-    #Calculating one more feature:
+    # Calculating one more feature:
     dict_agg_features['tempo'] = librosa.beat.tempo(y, sr=sr)[0]
     
     return dict_agg_features
 
 
-def read_process_labelled(src_dir, window=0.2, overlap=0.5, debug = True):
-    '''
+def read_process_labelled(src_dir, window=0.2, overlap=0.5, debug=True):
+    """
     Read and process labelled songs (train/test data, demo test data)
-    '''
+    """
 
     arr_features = []
 
     # Read files from the folders
-    for x,_ in GENRES.items():
+    for x, _ in GENRES.items():
         folder = src_dir + x
     
         for root, subdirs, files in os.walk(folder):
@@ -99,8 +97,8 @@ def read_process_labelled(src_dir, window=0.2, overlap=0.5, debug = True):
                 if debug:
                     print(f"Reading file: {file_name}")
                     
-                #Split songs:
-                samples=split_songs(signal,window,overlap)
+                # Split songs:
+                samples = split_songs(signal, window, overlap)
 
                 # Append the result to the data structure
                 for s in samples:
@@ -111,10 +109,10 @@ def read_process_labelled(src_dir, window=0.2, overlap=0.5, debug = True):
     return arr_features
 
 
-def read_process_unlabelled(src_dir, window=1, overlap=0, debug = True):
-    '''
-    Read and process unlabelled songas (spotify data)
-    '''
+def read_process_unlabelled(src_dir, window=1, overlap=0, debug=True):
+    """
+    Read and process unlabelled songs (spotify data)
+    """
     
     arr_features = []
 
@@ -129,12 +127,47 @@ def read_process_unlabelled(src_dir, window=1, overlap=0, debug = True):
             if debug:
                 print("Reading file: {}".format(file_name))
                 
-            #Split songs:
-            samples=split_songs(signal,window,overlap)
+            # Split songs:
+            samples = split_songs(signal, window, overlap)
 
             # Append the result to the data structure
             for s in samples:
                 features = get_features(s, sr)
                 arr_features.append(features)
-
     return arr_features
+
+
+# FUNCTIONS TO INCLUDE IN main.py
+
+
+def create_train_feats():
+    """
+    Builds .csv used to train the model
+    """
+    features = read_process_labelled(AUDIO_DIR, debug=True)
+    df = pd.DataFrame(features)
+    df.to_csv('./Features/dataset_features/data_features.csv', index=False)
+
+
+def create_demo_feats():
+    """
+    Builds .csv used to test the model (demo)
+    """
+    features = read_process_labelled(TEST_DIR, window=1, overlap=0, debug=True)
+    df = pd.DataFrame(features)
+    df.to_csv('./Features/test_songs_features/test_features.csv', index=False)
+    features = read_process_labelled(TEST_DIR, window=1/3, overlap=0, debug=True)
+    df = pd.DataFrame(features)
+    df.to_csv('./Features/test_songs_features/test_features_split.csv', index=False)
+
+
+def create_spoti_feats():
+    """
+    Builds .csv used to test the model (spotify)
+    """
+    features = read_process_unlabelled(SPOTI_DIR, debug=True)
+    df = pd.DataFrame(features)
+    df.to_csv('./Features/spotify_songs_features/spoti_features.csv', index=False)
+    features = read_process_unlabelled(SPOTI_DIR, window=1/3, overlap=0, debug=True)
+    df = pd.DataFrame(features)
+    df.to_csv('./Features/spotify_songs_features/spoti_features_split.csv', index=False)
