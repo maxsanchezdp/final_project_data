@@ -3,8 +3,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from keras import models
 from keras import layers
+import tensorflow as tf
+import os
 import warnings
-warnings.filterwarnings('ignore')
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+warnings.filterwarnings("ignore")
+tf.logging.set_verbosity(tf.logging.ERROR)
 
 # Path to training data:
 PATH = "./Features/dataset_features/data_features.csv"
@@ -80,7 +84,7 @@ def execute_mts(path):
     file = train_save_model(modelo, X_train, X_test, y_train, y_test)
     print(f'Done! You can find your model at: {file}')
 
-
+execute_mts(PATH)
 
 
 
