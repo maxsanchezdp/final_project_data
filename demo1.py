@@ -3,8 +3,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import OrderedDict
-import h5py
-from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from keras.models import load_model
 import tensorflow as tf
@@ -67,12 +65,11 @@ def predict(model, Xt, yt, splits):
     preds = model.predict_classes(Xt)
     predictions = [(g[i], GENRES.get(preds[i])) for i in range(len(preds))]
     probs = model.predict(Xt)
-    print(accuracy)
-    print(predictions)
-    print(probs)
+    return accuracy, predictions, probs
 
 
+def present_results(acc, preds, probs):
+    """
+    Present results of demo1
+    """
 
-modelo = model_load()
-Xt, yt, splits = normalize(TEST)
-predict(modelo, Xt, yt, splits)
