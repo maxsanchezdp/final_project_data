@@ -10,8 +10,19 @@ from keras.models import load_model
 import warnings
 warnings.filterwarnings('ignore')
 
-# Paths to data features and test song features:
+# Paths to data features, test song features and model:
 
 TRAIN = './Features/dataset_features/data_features.csv'
 TEST = './Features/test_songs_features/test_features.csv'
 TEST_SPLIT = './Features/test_songs_features/test_features_split.csv'
+MODEL = './Models/FC_NN.h5'
+
+
+def model_load(path, show=False):
+    modelo = load_model(path)
+    if show:
+        print(modelo.summary())
+    return modelo
+
+
+
