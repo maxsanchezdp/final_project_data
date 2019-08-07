@@ -61,11 +61,16 @@ def predict(model, Xt, yt, splits):
     """
     Predicts labels for each song
     """
+    g = ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']
     evaluation = model.evaluate(Xt, yt)
     accuracy = round(evaluation[1], 3)
-    predictions = model.predict_classes(Xt)
+    preds = model.predict_classes(Xt)
+    predictions = [(g[i], GENRES.get(preds[i])) for i in range(len(preds))]
+    probs = model.predict(Xt)
     print(accuracy)
     print(predictions)
+    print(probs)
+
 
 
 modelo = model_load()
