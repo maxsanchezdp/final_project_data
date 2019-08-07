@@ -84,7 +84,6 @@ def execute_mts(path):
     file = train_save_model(modelo, X_train, X_test, y_train, y_test)
     print(f'Done! You can find your model at: {file}')
 
-execute_mts(PATH)
 
 
 

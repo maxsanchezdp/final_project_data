@@ -1,3 +1,4 @@
 Data/genres/
 .ipynb_checkpoints/
 __pycache__/
+.env

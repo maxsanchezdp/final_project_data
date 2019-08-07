@@ -1,6 +1,4 @@
-import itertools
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from keras.models import load_model
@@ -50,17 +48,13 @@ def normalize(path):
     # Normalize:
     sc = StandardScaler().fit_transform(Xt.values)
     Xt = pd.DataFrame(sc[-rows:], index=Xt[-rows:].index, columns=Xt.columns)
-    splits = rows/10
-    return Xt, yt, splits
+    return Xt, yt
 
 
 def predict(model, Xt, yt, splits):
     """
     Predicts labels for each song
     """
-    #g = ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']
-    #evaluation = model.evaluate(Xt, yt)
-    #accuracy = round(evaluation[1], 3)
     preds = model.predict_classes(Xt)
     predictions = [(GENRES.get(yt[i]), GENRES.get(preds[i])) for i in range(len(preds))]
     probs = model.predict(Xt)
@@ -72,15 +66,20 @@ def present_results(preds, probs):
     Present results of demo1
     """
     for index, values in enumerate(probs):
-        plt.subplot(10, 1, index + 1)
+        plt.subplot(5, 2, index + 1)
         plt.title(f'Real: {preds[index][0]} - Predicted: {preds[index][1]}')
         plt.bar(GENRES.values(), values)
-        # plt.axis('off')
+    plt.savefig('./Output/demo1.png')
     plt.show()
 
-modelo=model_load()
-Xt, yt, splits = normalize(TEST)
-predictions, probs = predict(modelo, Xt, yt, splits)
-present_results(predictions,probs)
+
+# FUNCTIONS TO INCLUDE IN main.py
+
+def execute_demo1():
+    modelo=model_load()
+    Xt, yt, splits = normalize(TEST)
+    predictions, probs = predict(modelo, Xt, yt, splits)
+    present_results(predictions,probs)
+
 
 
