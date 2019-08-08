@@ -76,13 +76,14 @@ def train_save_model(model, xtrain, xtest, ytrain, ytest, epochs=60, batch_size=
 # FUNCTIONS TO INCLUDE IN main.py
 
 
-def execute_mts(path):
+def execute_mts():
     print('Preparing train data...')
-    X_train, X_test, y_train, y_test = prepare_data(path)
+    X_train, X_test, y_train, y_test = prepare_data(PATH)
     print('Defining, training and saving model...')
     modelo = define_model(X_train)
     file = train_save_model(modelo, X_train, X_test, y_train, y_test)
     print(f'Done! You can find your model at: {file}')
+
 
 
 

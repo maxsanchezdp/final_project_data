@@ -168,7 +168,9 @@ def create_train_feats():
     """
     features = read_process_labelled(AUDIO_DIR, debug=True)
     df = pd.DataFrame(features)
-    df.to_csv('./Features/dataset_features/data_features.csv', index=False)
+    p = './Features/dataset_features/data_features.csv'
+    df.to_csv(p, index=False)
+    return p
 
 
 def create_demo_feats():
@@ -190,3 +192,4 @@ def create_song_feats(path):
     features = read_process_song(path, debug=True)
     df = pd.DataFrame(features)
     df.to_csv('./Features/single_song_features/song_features.csv', index=False)
+

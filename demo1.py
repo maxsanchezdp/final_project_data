@@ -16,7 +16,7 @@ TEST = './Features/single_song_features/song_features.csv'
 MODEL = './Models/FC_NN.h5'
 
 # Dictionary for genres label encoding:
-GENRES = {0: 'blues', 1: 'classical', 2: 'country', 3: 'disco', 4: 'hiphop',
+genres = {0: 'blues', 1: 'classical', 2: 'country', 3: 'disco', 4: 'hiphop',
           5: 'jazz', 6: 'metal', 7: 'pop', 8: 'reggae', 9: 'rock'}
 
 
@@ -53,7 +53,7 @@ def predict(model, Xt):
     Predicts labels for each song
     """
     preds = model.predict_classes(Xt)
-    predicted = GENRES.get(preds[0])
+    predicted = genres.get(preds[0])
     probs = model.predict(Xt)[0]
     return predicted, probs
 
@@ -64,7 +64,7 @@ def present_results(preds, probs):
     """
     plt.figure(figsize=(10,10))
     plt.title(f'Predicted genre: {preds}')
-    plt.bar(GENRES.values(), probs, color='g')
+    plt.bar(genres.values(), probs, color='g')
     for j in range(len(probs)):
         plt.text(x=j - 0.1, y=probs[j], s='{:.2f} %'.format((probs[j]) * 100), size=10)
     plt.savefig('./Output/demo1.png')
