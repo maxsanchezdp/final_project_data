@@ -7,8 +7,6 @@ from scipy.stats import skew
 
 # directories
 AUDIO_DIR = './Data/genres/'
-TEST_DIR = './Data/test_songs/'
-SPOTI_DIR = './Data/spotify_songs/'
 
 # Dictionary for genres label encoding:
 GENRES = {'blues': 0, 'classical': 1, 'country': 2, 'disco': 3, 'hiphop': 4,
@@ -137,6 +135,30 @@ def read_process_unlabelled(src_dir, window=1, overlap=0, debug=True):
     return arr_features
 
 
+def read_process_song(path, window=1, overlap=0, debug=True):
+    """
+    Read and process a single song
+    """
+
+    arr_features = []
+
+    signal, sr = librosa.load(path)
+    signal = signal[:660000]
+
+    # Debug process
+    if debug:
+        print("Reading file: {}".format(path))
+
+    # Split songs:
+    samples = split_songs(signal, window, overlap)
+
+    # Append the result to the data structure
+    for s in samples:
+        features = get_features(s, sr)
+        arr_features.append(features)
+    return arr_features
+
+
 # FUNCTIONS TO INCLUDE IN main.py
 
 
@@ -161,13 +183,10 @@ def create_demo_feats():
     df.to_csv('./Features/test_songs_features/test_features_split.csv', index=False)
 
 
-def create_spoti_feats():
+def create_song_feats(path):
     """
-    Builds .csv used to test the model (spotify)
+    Builds .csv used to test the model on a single song
     """
-    features = read_process_unlabelled(SPOTI_DIR, debug=True)
+    features = read_process_song(path, debug=True)
     df = pd.DataFrame(features)
-    df.to_csv('./Features/spotify_songs_features/spoti_features.csv', index=False)
-    features = read_process_unlabelled(SPOTI_DIR, window=1/3, overlap=0, debug=True)
-    df = pd.DataFrame(features)
-    df.to_csv('./Features/spotify_songs_features/spoti_features_split.csv', index=False)
+    df.to_csv('./Features/single_song_features/song_features.csv', index=False)

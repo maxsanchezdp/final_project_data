@@ -12,8 +12,7 @@ tf.logging.set_verbosity(tf.logging.ERROR)
 # Paths to data features, test song features and model:
 
 TRAIN = './Features/dataset_features/data_features.csv'
-TEST = './Features/test_songs_features/test_features.csv'
-TEST_SPLIT = './Features/test_songs_features/test_features_split.csv'
+TEST = './Features/single_song_features/song_features.csv'
 MODEL = './Models/FC_NN.h5'
 
 # Dictionary for genres label encoding:
@@ -39,36 +38,35 @@ def normalize(path):
     data = pd.read_csv(TRAIN)
     X = data.drop('genre', axis=1)
     # Test data:
-    tdata = pd.read_csv(path)
-    Xt = tdata.drop('genre', axis=1)
-    yt = tdata.genre
+    Xt = pd.read_csv(path)
     rows = Xt.shape[0]
     # Append original data and test data for normalization:
     Xt = X.append(Xt, ignore_index=True)
     # Normalize:
     sc = StandardScaler().fit_transform(Xt.values)
     Xt = pd.DataFrame(sc[-rows:], index=Xt[-rows:].index, columns=Xt.columns)
-    return Xt, yt
+    return Xt
 
 
-def predict(model, Xt, yt, splits):
+def predict(model, Xt):
     """
     Predicts labels for each song
     """
     preds = model.predict_classes(Xt)
-    predictions = [(GENRES.get(yt[i]), GENRES.get(preds[i])) for i in range(len(preds))]
-    probs = model.predict(Xt)
-    return predictions, probs
+    predicted = GENRES.get(preds[0])
+    probs = model.predict(Xt)[0]
+    return predicted, probs
 
 
 def present_results(preds, probs):
     """
     Present results of demo1
     """
-    for index, values in enumerate(probs):
-        plt.subplot(5, 2, index + 1)
-        plt.title(f'Real: {preds[index][0]} - Predicted: {preds[index][1]}')
-        plt.bar(GENRES.values(), values)
+    plt.figure(figsize=(10,10))
+    plt.title(f'Predicted genre: {preds}')
+    plt.bar(GENRES.values(), probs, color='g')
+    for j in range(len(probs)):
+        plt.text(x=j - 0.1, y=probs[j], s='{:.2f} %'.format((probs[j]) * 100), size=10)
     plt.savefig('./Output/demo1.png')
     plt.show()
 
@@ -77,9 +75,6 @@ def present_results(preds, probs):
 
 def execute_demo1():
     modelo=model_load()
-    Xt, yt, splits = normalize(TEST)
-    predictions, probs = predict(modelo, Xt, yt, splits)
+    Xt = normalize(TEST)
+    predictions,probs = predict(modelo, Xt)
     present_results(predictions,probs)
-
-
-
