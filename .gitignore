@@ -2,3 +2,4 @@ Data/genres/
 .ipynb_checkpoints/
 __pycache__/
 Data/unlabelled_songs/
+.env

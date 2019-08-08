@@ -1,13 +1,13 @@
-from feature_extraction import *
-from model_train_save import *
-from demo1 import *
-from music import *
-
-
+from feature_extraction import create_song_feats
+from demo1 import execute_demo1
+from music import play_song, execute_spoti
 
 import argparse
+import threading
 import warnings
 warnings.filterwarnings("ignore")
+
+SONG = '/home/maximiliano/datamadrid0619/FINAL_PROJECT/music_classifier/Data/unlabelled_songs/song.mp3'
 
 
 def parse():
@@ -21,9 +21,9 @@ def parse():
     grupo.add_argument('-d', '--demo', help='Test model using song in path', action='store_true')
     grupo.add_argument('-s', '--spoti', help='Test model using song from spotify', action='store_true')
 
-    parser.add_argument('path', help='Path to local file.', type=str)
+    parser.add_argument('-p', '--path', help='Path to local file.', type=str, default=SONG)
 
-
+    print(parser)
     return parser.parse_args()
 
 
@@ -33,24 +33,36 @@ def main():
     """
     args = parse()
 
-    if args.fext:
-        print("Extracting features from training data...")
-        p = create_train_feats()
-        print(f'Done! you may find the .csv with training data features at: {p}')
-
-    if args.train:
-        execute_mts()
+    # if args.fext:
+    #     print("Extracting features from training data...")
+    #     p = create_train_feats()
+    #     print(f'Done! you may find the .csv with training data features at: {p}')
+    #
+    # if args.train:
+    #     execute_mts()
 
     if args.demo:
-        play_song(args.path)
+        thread = threading.Thread(target=play_song, args=(args.path,))
+        thread.start()
         print('Extracting song features...')
         create_song_feats(args.path)
         print('Predicting genre...')
         execute_demo1()
+        thread.join()
         print("Done!")
 
     if args.spoti:
-        pass
+        print('SPOTI-DEMO')
+        spath = execute_spoti()
+        thread = threading.Thread(target=play_song, args=(spath,))
+        thread.start()
+        print('Extracting song features...')
+        create_song_feats(spath)
+        print('Predicting genre...')
+        execute_demo1()
+        thread.join()
+        print("Done!")
+
 
 
 if __name__ == "__main__":
