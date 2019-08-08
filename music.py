@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-if not ("CID" or "SECRET") in os.environ:
+if not ("CID" and "SECRET") in os.environ:
     raise ValueError("You should have a valid Client ID and Client Secret for Spotify for devs in os.environ. "
                      "Check https://developer.spotify.com/")
 
