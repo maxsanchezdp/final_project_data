@@ -6,7 +6,7 @@ Develop/train an algorithm that takes an audio file like the ones in the dataset
 
 First we need to "translate" the audio files into something we can analyse and find patterns in. I need to extract key features that will help a model identify different genres.
 
-El espectrograma se puede interpretar como una proyección en dos dimensiones de una sucesión de Transformadas de Fourier de tramas consecutivas, donde la energía y el contenido frecuencial de la señal va variando a lo largo del tiempo. (https://es.wikipedia.org/wiki/Espectrograma)
+# (THIS IS A WORK IN PROGRESS)
 
 
 
