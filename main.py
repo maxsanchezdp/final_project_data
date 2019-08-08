@@ -23,7 +23,6 @@ def parse():
 
     parser.add_argument('-p', '--path', help='Path to local file.', type=str, default=SONG)
 
-    print(parser)
     return parser.parse_args()
 
 
@@ -42,26 +41,27 @@ def main():
     #     execute_mts()
 
     if args.demo:
+        print('\nDEMO')
         thread = threading.Thread(target=play_song, args=(args.path,))
         thread.start()
-        print('Extracting song features...')
+        print('\nExtracting song features...')
         create_song_feats(args.path)
-        print('Predicting genre...')
+        print('\nPredicting genre...')
         execute_demo1()
         thread.join()
-        print("Done!")
+        print("\nDone!")
 
     if args.spoti:
-        print('SPOTI-DEMO')
+        print('\nSPOTI-DEMO')
         spath = execute_spoti()
         thread = threading.Thread(target=play_song, args=(spath,))
         thread.start()
-        print('Extracting song features...')
+        print('\nExtracting song features...')
         create_song_feats(spath)
-        print('Predicting genre...')
+        print('\nPredicting genre...')
         execute_demo1()
         thread.join()
-        print("Done!")
+        print("\nDone!")
 
 
 
