@@ -53,14 +53,18 @@ def main():
 
     if args.spoti:
         print('\nSPOTI-DEMO')
-        spath = execute_spoti()
-        thread = threading.Thread(target=play_song, args=(spath,))
-        thread.start()
-        print('\nExtracting song features...')
-        create_song_feats(spath)
-        print('\nPredicting genre...')
-        execute_demo1()
-        thread.join()
+        while True:
+            spath = execute_spoti()
+            thread = threading.Thread(target=play_song, args=(spath,))
+            thread.start()
+            print('\nExtracting song features...')
+            create_song_feats(spath)
+            print('\nPredicting genre...')
+            execute_demo1()
+            thread.join()
+            cont = input("Would you like to try another song? (y/n): ")
+            if cont == "n":
+                break
         print("\nDone!")
 
 
