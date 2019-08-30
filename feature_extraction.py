@@ -107,37 +107,9 @@ def read_process_labelled(src_dir, window=0.2, overlap=0.5, debug=True):
     return arr_features
 
 
-def read_process_unlabelled(src_dir, window=1, overlap=0, debug=True):
-    """
-    Read and process unlabelled songs (spotify data)
-    """
-    
-    arr_features = []
-
-    for root, subdirs, files in os.walk(src_dir):
-        for file in files:
-            # Read the audio file
-            file_name = src_dir + file
-            signal, sr = librosa.load(file_name)
-            signal = signal[:660000]
-
-            # Debug process
-            if debug:
-                print("Reading file: {}".format(file_name))
-                
-            # Split songs:
-            samples = split_songs(signal, window, overlap)
-
-            # Append the result to the data structure
-            for s in samples:
-                features = get_features(s, sr)
-                arr_features.append(features)
-    return arr_features
-
-
 def read_process_song(path, window=1, overlap=0, debug=True):
     """
-    Read and process a single song
+    Read and process a single song (used for testing the model with single songs)
     """
 
     arr_features = []
@@ -171,19 +143,6 @@ def create_train_feats():
     p = './Features/dataset_features/data_features.csv'
     df.to_csv(p, index=False)
     return p
-
-
-def create_demo_feats():
-    """
-    Builds .csv used to test the model (demo)
-    """
-    features = read_process_labelled(TEST_DIR, window=1, overlap=0, debug=True)
-    df = pd.DataFrame(features)
-    df.to_csv('./Features/test_songs_features/test_features.csv', index=False)
-    features = read_process_labelled(TEST_DIR, window=1/3, overlap=0, debug=True)
-    df = pd.DataFrame(features)
-    df.to_csv('./Features/test_songs_features/test_features_split.csv', index=False)
-
 
 def create_song_feats(path):
     """
