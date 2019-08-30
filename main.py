@@ -1,4 +1,5 @@
-from feature_extraction import create_song_feats
+from feature_extraction import create_song_feats, create_train_feats
+from model_train_save import execute_mts
 from demo1 import execute_demo1
 from music import play_song, execute_spoti
 
@@ -11,12 +12,15 @@ SONG = '/home/maximiliano/datamadrid0619/FINAL_PROJECT/music_classifier/Data/unl
 
 
 def parse():
-    parser = argparse.ArgumentParser(description="Music classification system")  # analizador de argumentos
+    """
+    Arg_parser
+    """
+    parser = argparse.ArgumentParser(description="Music classification system")
 
-    grupo = parser.add_mutually_exclusive_group()  # grupo mutuamente excluyente (solo una operacion)
+    grupo = parser.add_mutually_exclusive_group()
 
     grupo.add_argument('-f', '--fext', help='Extracts features from training data',
-                       action='store_true')  # action guarda el argumento
+                       action='store_true')
     grupo.add_argument('-t', '--train', help='Trains and save the model using training data', action='store_true')
     grupo.add_argument('-d', '--demo', help='Test model using song in path', action='store_true')
     grupo.add_argument('-s', '--spoti', help='Test model using song from spotify', action='store_true')
@@ -32,13 +36,13 @@ def main():
     """
     args = parse()
 
-    # if args.fext:
-    #     print("Extracting features from training data...")
-    #     p = create_train_feats()
-    #     print(f'Done! you may find the .csv with training data features at: {p}')
-    #
-    # if args.train:
-    #     execute_mts()
+    if args.fext:
+        print("Extracting features from training data...")
+        p = create_train_feats()
+        print(f'Done! you may find the .csv with training data features at: {p}')
+
+    if args.train:
+        execute_mts()
 
     if args.demo:
         print('\nDEMO')

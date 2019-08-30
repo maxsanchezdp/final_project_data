@@ -5,20 +5,27 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+# Makes sure you have credentials fot Spotify for developers saved as environment variables
 if not ("CID" and "SECRET") in os.environ:
     raise ValueError("You should have a valid Client ID and Client Secret for Spotify for devs in os.environ. "
                      "Check https://developer.spotify.com/")
 
-CID=os.environ['CID']
-SECRET=os.environ['SECRET']
+CID = os.environ['CID']
+SECRET = os.environ['SECRET']
 
 def play_song(path):
+    """
+    Reads and plays a song in a given path using mpg123 (needs to be installed)
+    """
     os.system("mpg123 " + path)
 
 
 # Spotipy functions:
 
 def get_songs():
+    """
+    Searches for a given song/artist in Spotify and returns a list of the first 10 results found.
+    """
     client_credentials_manager = SpotifyClientCredentials(client_id=CID, client_secret=SECRET)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     while True:
@@ -45,6 +52,9 @@ def get_songs():
 
 
 def select_song(lista):
+    """
+    Used for choosing the desired song from the list of results. Returns the song_id for the selected song.
+    """
     for i, el in enumerate(lista):
         print(f'\n{i}. {el[0]} - {el[1]}')
     choice = int(input("\nChoose your song (number): "))
@@ -52,6 +62,9 @@ def select_song(lista):
     return song_id
 
 def get_url(song_id):
+    """
+    Given a song_id, returns the preview URL for that song available in spotify's API.
+    """
     client_credentials_manager = SpotifyClientCredentials(client_id=CID, client_secret=SECRET)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     track = sp.track(song_id)
@@ -64,6 +77,9 @@ def get_url(song_id):
 
 
 def download_song(url):
+    """
+    Downloads the preview of the selected song
+    """
     print('\nBeginning file download with urllib2...')
     path = './Data/unlabelled_songs/song.mp3'
     urllib.request.urlretrieve(url, f'./Data/unlabelled_songs/song.mp3')

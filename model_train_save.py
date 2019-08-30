@@ -16,7 +16,7 @@ PATH = "./Features/dataset_features/data_features.csv"
 
 def prepare_data(path, test_size=0.2):
     """
-    Prepares data in given path to feed the model
+    Prepares data in given path to train/validate the model
     """
     data = pd.read_csv(path)
     X = data.drop('genre', axis=1)
@@ -69,7 +69,7 @@ def train_save_model(model, xtrain, xtest, ytrain, ytest, epochs=60, batch_size=
     test_loss = round(test_loss, 3)
     test_acc = round(test_acc, 3)
     print(f'Test accuracy: {test_acc} - Test loss: {test_loss}')
-    file_name = './Models/FN_NN_n.h5'
+    file_name = './Models/FC_NN_n.h5'
     model.save(file_name)
     return file_name
 

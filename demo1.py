@@ -60,7 +60,7 @@ def predict(model, Xt):
 
 def present_results(preds, probs):
     """
-    Present results of demo1
+    Present results of prediction
     """
     plt.figure(figsize=(10,10))
     plt.title(f'Predicted genre: {preds}')
