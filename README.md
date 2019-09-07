@@ -21,7 +21,7 @@ Also, I left out of one song of each genre so I could use them later for testing
 
 ### ii. Python version, libraries and software:
 
-This project uses **Python 3.6** as more recent versions are not supported by Keras (one of the main libraries/frameworks I've used). I would recommend you to create a virtual environment (using conda, virtualenv, or whichever you prefer) and installing the Python version and libraries specified in the **requirements.txt**. These are the most important ones:
+This project uses **Python 3.6** as more recent versions are not supported by Keras (one of the main libraries/frameworks I've used). I would recommend you to create a virtual environment (using conda, virtualenv, or whichever you prefer) and installing the Python version and libraries specified in the **requirements.txt**. You should make sure you have installed:
 
 |  Name 	|  Description 	|
 |---	|---	|
@@ -37,8 +37,7 @@ This project uses **Python 3.6** as more recent versions are not supported by Ke
 |   [Urllib3](https://urllib3.readthedocs.io/en/latest/)	|   HTTP client for Python	|
 |   [Python-dotenv](https://pypi.org/project/python-dotenv/)	|   Reads the key,value pair from .env file and adds them to environment variable	|
 |   [Spotipy](https://spotipy.readthedocs.io/en/latest/)	|   Python library for the Spotify Web API	|
-
-When you run *main.py* for testing the script plays the song from the terminal using **mpg123**, an MPEG console audio player and decoder. You should install it on your computer, otherwise it might fail. **Mpg123** is available for Windows, Linux and Mac (https://www.mpg123.de/index.shtml).
+|   [mpg123](https://www.mpg123.de/index.shtml)	|   MPEG console audio player and decoder for Linux, Windows and Mac	|
 
 
 # (THIS IS A WORK IN PROGRESS)
