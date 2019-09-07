@@ -26,17 +26,17 @@ This project uses **Python 3.6** as more recent versions are not supported by Ke
 |  Name 	|  Description 	|
 |---	|---	|
 |   [Python 3.6](https://www.python.org/downloads/release/python-369/)	|   Python version currently supported by Keras	|
-|   	|   	|
-|   	|   	|
-|   	|   	|
-|   	|   	|
-|   	|   	|
-|   	|   	|
-|   	|   	|
-|   	|   	|
-|   	|   	|
-|   	|   	|
-|   	|   	|
+|   [Librosa](https://librosa.github.io/librosa/)	|   Python package for music and audio analysis	|
+|   [Pandas](https://pandas.pydata.org/)	|   Provides easy-to-use data structures and data analysis tools for Python	|
+|  [Numpy](https://numpy.org/)	|   Python package for scientific computing	|
+|   [Scipy](https://www.scipy.org/)	|   Provides many user-friendly and efficient numerical routines for python 	|
+|   [Matplotlib](https://matplotlib.org/)	|   Python 2D plotting library	|
+|   [Scikit-learn](https://scikit-learn.org/stable/)	|   Machine learning library for Python	|
+|   [TensorFlow](https://www.tensorflow.org/)	|   Machine learning library for Python	|
+|   [Keras](https://keras.io/)	|   Neural Networks library for Python that runs on TensorFlow	|
+|   [Urllib3](https://urllib3.readthedocs.io/en/latest/)	|   HTTP client for Python	|
+|   [Python-dotenv](https://pypi.org/project/python-dotenv/)	|   Reads the key,value pair from .env file and adds them to environment variable	|
+|   [Spotipy](https://spotipy.readthedocs.io/en/latest/)	|   Python library for the Spotify Web API	|
 
 
 
