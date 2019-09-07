@@ -70,9 +70,6 @@ def get_url(song_id):
     track = sp.track(song_id)
     url=[]
     url.append(track['preview_url'])
-    # if len(url) == 0 or url[0] == None:
-    #     print ("\nSorry, there's no preview available for your song :(")
-    # else:
     return url[0]
 
 
