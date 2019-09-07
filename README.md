@@ -41,11 +41,11 @@ This project uses **Python 3.6** as more recent versions are not supported by Ke
 
 ### iii. Spotify developer account:
 
-I've developed an integration with Sporify's Web API that allows the user to search and download previews of new songs and then test the model with these. It's a pretty cool feature and I highly recommend you to try it. You'll need **Spotify developer** credentials to make this featurw work, but don't worry, it's very easy to set it all up:
+I've developed an integration with Sporify's Web API that allows the user to search and download previews of new songs and then test the model with these. It's a pretty cool feature and I highly recommend you to try it. You'll need **Spotify developer** credentials to make this feature work, but don't worry, it's very easy to set it all up:
 
-**1. Connect Spotify developer to your Spotify account:** it takes less than 5 minutes, you just need to go to this [website](https://developer.spotify.com/dashboard/) and click on *"Sign up for a free Spotify account here."*. Then click on *Create a Client ID* and follow the instrucions. You will get a *Client ID* and a *Client Secret*.
+**1. Connect Spotify developer to your Spotify account:** it takes less than 5 minutes, you just need to go to this [website](https://developer.spotify.com/dashboard/) and click on *"Sign up for a free Spotify account here."*. Then click on *Create a Client ID* and follow the instructions. You will get a *Client ID* and a *Client Secret*.
 
-**2. Add ypur ID and Secret to environment variables:** create a *.env* file in the **root** folder, open it with your favourite text editor and type your ID as *CID = "WhateverYourClientIdIs"* and your Secret as *SECRET = "WhateverYourSecretIs"*.
+**2. Add your ID and Secret to environment variables:** create a *.env* file in the **root** folder, open it with your favourite text editor and type your ID as *CID = "WhateverYourClientIdIs"* and your Secret as *SECRET = "WhateverYourSecretIs"*.
 
 If you've done all this correctly, the Spotify demo feature should work like charm.
 
