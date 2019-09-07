@@ -5,13 +5,20 @@ As my final project for Ironhack's Data Analytics Bootcamp I decided to develop 
 So, this is a step by step guide for you to follow if you wish to try my **Music Classifier** yourself. *On this guide I will also explain the methodology I followed and the results I got*:
 
 ## 0. Fork/clone this repo:
-As usual, the first step is to fork this repo and clone/download it on your computer. That way you will have the same folder structure and everything should run smoothly once you install all the requirements.
+As usual, the first step is to fork this repo and clone/download it on your computer. That way you will have the same folder structure and everything should run smoothly if you take into account the following considerations:
 
-Some things to consider:
+### i. Train data acquisition and conversion:
 
-### i. aosdkasdjas
+I haven't uploaded the songs data set I used to train and test the model, but you can find it very easily here: http://opihi.cs.uvic.ca/sound/genres.tar.gz.
 
-asdasdasda
+Extract the files in the **Data** folder of this project. The structure should look like this:
+
+![file_structure](./for_md/0_file_structure.png)
+
+
+The dataset consists of 1000 audio tracks each 30 seconds long. It contains 10 genres, each represented by 100 tracks. The tracks are all 22050Hz Mono 16-bit audio files in .wav format. You will also need to convert each file from .wav to .mp3 (I used SoX for this: http://sox.sourceforge.net/).
+
+Just download 
 
 
 
