@@ -9,16 +9,21 @@ As usual, the first step is to fork this repo and clone/download it on your comp
 
 ### i. Train data acquisition and conversion:
 
-I haven't uploaded the songs data set I used to train and test the model, but you can find it very easily here: http://opihi.cs.uvic.ca/sound/genres.tar.gz.
+I haven't uploaded the songs data set I used to train and test the model, but you can find it here: http://opihi.cs.uvic.ca/sound/genres.tar.gz.
 
-Extract the files in the **Data** folder of this project. The structure should look like this:
+Just dowload and extract the files in the **Data** folder of this project. The structure should look like this:
 
 ![file_structure](./for_md/0_file_structure.png)
 
+The dataset consists of 1000 audio tracks each 30 seconds long. It contains 10 genres, each represented by 100 tracks. The tracks are all 22050Hz Mono 16-bit audio files in .wav format. You will also need to convert each file from .au to .wav (I used SoX for this: http://sox.sourceforge.net/).
 
-The dataset consists of 1000 audio tracks each 30 seconds long. It contains 10 genres, each represented by 100 tracks. The tracks are all 22050Hz Mono 16-bit audio files in .wav format. You will also need to convert each file from .wav to .mp3 (I used SoX for this: http://sox.sourceforge.net/).
+Also, I used left out of each genre so I could use them later for testing (you can find these in the **Data/test_songs/** folder), so the actual training of the neural network is done with the first 99 songs of each genre. If you wish to test the training mode, make sure to remove the last song of each genre so you can replicate my results.
 
-Just download 
+### ii. Python version, libraries and software:
+
+This project uses **Python 3.6** as more recent versions are not supported by Keras (one of the main libraries/frameworks I've used). I would recommend you to create a virtual environment (using conda, virtualenv, or whichever you prefer) and installing the Python version and libraries specified in the **requirements.txt**. These are the most important ones:
+
+
 
 
 
