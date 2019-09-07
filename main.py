@@ -8,7 +8,7 @@ import threading
 import warnings
 warnings.filterwarnings("ignore")
 
-SONG = '/home/maximiliano/datamadrid0619/FINAL_PROJECT/music_classifier/Data/unlabelled_songs/song.mp3'
+SONG = './Data/test_songs/classical.mp3'
 
 
 def parse():
