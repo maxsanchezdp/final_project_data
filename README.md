@@ -2,7 +2,7 @@
 
 As my final project for Ironhack's Data Analytics Bootcamp I decided to develop a music classification system that would use Neural Networks to predict the genre of new songs. In this repository you can find all the necessary files to run the script and test it yourself. You can also train/test the model with your own music if you wish, I've added a *feature extraction* and a *train/test* mode using **argparse** for that purpose (I will explain how later on).
 
-So, this is a step by step guide for you to follow if you wish to try my **Music Classifier** yourself. *On this guide I will also explain the methodology I followed and the results I got*:
+So, this is a step by step guide for you to follow if you wish to try my **Music Classifier** yourself. On this guide I will also explain the methodology I followed and the results I got:
 
 ## 0. Fork/clone this repo:
 As usual, the first step is to fork this repo and clone/download it on your computer. That way you will have the same folder structure and everything should run smoothly if you take into account the following considerations:
@@ -47,8 +47,17 @@ I've developed an integration with Sporify's Web API that allows the user to sea
 
 **2. Add your ID and Secret to environment variables:** create a *.env* file in the **root** folder, open it with your favourite text editor and type your ID as *CID = "WhateverYourClientIdIs"* and your Secret as *SECRET = "WhateverYourSecretIs"*.
 
-If you've done all this correctly, the Spotify demo feature should work like charm.
+### Once you're done with this, everything should work like a charm
 
+## 1. *Feature extraction* and *train* mode:
+
+As I mentioned before, you can train the model with your own music if you want to. You just need to make sure to put your music in the **Data/genre/** folder as I previously showed. All files must be correctly labelled. However, if you wish to add new/different genres you'll to tweak the code a little bit (just modify the *GENRES* dictionary on **feature_extraction.py** and **demo1.py**).
+
+I will explain how it works with the original dataset:
+
+### Feature extraction:
+
+This is the first step of my project and also the first challenge. We are dealing with audio files which we need to "translate" into numbers and other types of data that we can later use to train the Neural Network. I used a library called **Librosa** 
 # (THIS IS A WORK IN PROGRESS)
 
 
