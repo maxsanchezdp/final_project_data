@@ -2,10 +2,10 @@
 
 As my final project for Ironhack's Data Analytics Bootcamp I decided to develop a music classification system that would use Neural Networks to predict the genre of new songs. In this repository you can find all the necessary files to run the script and test it yourself. You can also train/test the model with your own music if you wish, I've added a feature extraction and a train/test mode using **argparse** for that purpose(I will explain how later on).
 
-So, this is a step by step guide for you to follow if you wish to try my **Music Classifier** yourself:
+So, this is a step by step guide for you to follow if you wish to try my **Music Classifier** yourself. *On this guide I will also explain the methodology I followed and the results I got*:
 
 ## 0. Fork/clone this repo:
-
+As usual
 
 
 
