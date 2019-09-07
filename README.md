@@ -4,7 +4,7 @@ As my final project for Ironhack's Data Analytics Bootcamp I decided to develop 
 
 So, this is a step by step guide for you to follow if you wish to try my **Music Classifier** yourself. *On this guide I will also explain the methodology I followed and the results I got*:
 
-## 0. Fork/clone this repo:
+### 0. Fork/clone this repo:
 As usual
 
 
