@@ -23,11 +23,20 @@ Also, I left out of one song of each genre so I could use them later for testing
 
 This project uses **Python 3.6** as more recent versions are not supported by Keras (one of the main libraries/frameworks I've used). I would recommend you to create a virtual environment (using conda, virtualenv, or whichever you prefer) and installing the Python version and libraries specified in the **requirements.txt**. These are the most important ones:
 
-|hola|adad   | ada  | asd  |   |
-|---|---|---|---|---|
-|   |   |   |   |   |
-|   |   |   |   |   |
-|   |   |   |   |   |
+|   Name and version	|  Description 	|   Website	|
+|---	|---	|---	|
+|   Python 3.6	|   adasdasd	|   	|
+|   adadasd	|   adqwd	|   dasdadas	|
+|   adada	| adsasd  	|   asdasd	|
+|   asd	|   	|   	|
+|   	|   	|   	|
+|   	|   	|   	|
+|   	|   	|   	|
+|   	|   	|   	|
+|   	|   	|   	|
+|   	|   	|   	|
+|   	|   	|   	|
+|   	|   	|   	|
 
 
 
