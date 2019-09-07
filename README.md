@@ -1,6 +1,6 @@
 # Music Classifier
 
-As my final project for Ironhack's Data Analytics Bootcamp I decided to develop a music classification system that would use Neural Networks to predict the genre of new songs. In this repository you can find all the necessary files to run the script and test it yourself. You can also train/test the model with your own music if you wish, I've added a feature extraction and a train/test mode using **argparse** for that purpose(I will explain how later on).
+As my final project for Ironhack's Data Analytics Bootcamp I decided to develop a music classification system that would use Neural Networks to predict the genre of new songs. In this repository you can find all the necessary files to run the script and test it yourself. You can also train/test the model with your own music if you wish, I've added a *feature extraction* and a *train/test* mode using **argparse** for that purpose (I will explain how later on).
 
 So, this is a step by step guide for you to follow if you wish to try my **Music Classifier** yourself. *On this guide I will also explain the methodology I followed and the results I got*:
 
@@ -38,12 +38,8 @@ This project uses **Python 3.6** as more recent versions are not supported by Ke
 |   [Python-dotenv](https://pypi.org/project/python-dotenv/)	|   Reads the key,value pair from .env file and adds them to environment variable	|
 |   [Spotipy](https://spotipy.readthedocs.io/en/latest/)	|   Python library for the Spotify Web API	|
 
+When you run *main.py* for testing the script plays the song from the terminal using **mpg123**, an MPEG console audio player and decoder. You should install it on your computer, otherwise it might fail. **Mpg123** is available for Windows, Linux and Mac (https://www.mpg123.de/index.shtml).
 
-
-
-Develop/train an algorithm that takes an audio file like the ones in the dataset and classifies it into one of the trained genres, also giving a % o similarity with the rest of genres.
-
-First we need to "translate" the audio files into something we can analyse and find patterns in. I need to extract key features that will help a model identify different genres.
 
 # (THIS IS A WORK IN PROGRESS)
 
