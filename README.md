@@ -51,7 +51,7 @@ I've developed an integration with Sporify's Web API that allows the user to sea
 
 ## 1. *Feature extraction* and *train* mode:
 
-As I mentioned before, you can train the model with your own music if you want to. You just need to make sure to put your music in the **Data/genre/** folder as I previously showed. All files must be correctly labelled. However, if you wish to add new/different genres you'll to tweak the code a little bit (just modify the *GENRES* dictionary on **feature_extraction.py** and **demo1.py**).
+As I mentioned before, you can train the model with your own music if you want to. You just need to make sure to put your music in the **Data/genre/** folder as I previously showed. All files must be correctly labelled. However, if you wish to add new/different genres you'll need to tweak the code a little bit (just modify the *GENRES* dictionary on **feature_extraction.py** and **demo1.py**).
 
 I will explain how it works with the original dataset:
 
@@ -77,11 +77,22 @@ The results I got where pretty good as you can see from the accuracy-loss plot a
 
 ## 2. Demo modes:
 
-Whether you have already trained the model with your own data or you just want to test my trained model, you can run the demo modes I've developed. Both demos do basically the same thing: they read an audio file of your choice, extract its features, normalize the data and then make a prediction with the model. The results are shown on a bar plot that describe the confidence with which the model predicts each of the genres for a single song, just like this one:
+Whether you have already trained the model with your own data or you just want to test my trained model, you can run the demo modes I've developed. Both demos do basically the same thing: they read an audio file of your choice, extract its features, normalize the data, save it to a *.csv* (found in **Features/singel_song_features/**) and then make a prediction with the model. The results are shown on a bar plot that describe the confidence with which the model predicts each of the genres for a single song, just like this one:
 ![results](./for_md/3_prediction.png)
+
+With a little help from my professors I was able to apply threading on this part of the project, which makes it possible to play the test song from terminal (using **mpg123**) while the model makes its predictions.
+
+Now, here's how you run the demo modes:
 
 ### Normal demo mode:
 
+If you want to test the model with a song you already have in your computer you need to run <code>python main.py -d -p path_to_your_song/song.mp3</code> on your terminal from the project's folder. **Make sure your song is in *.mp3* format**. You can also use the songs in the **Data/test_songs/** folder. If you don't specify a path to an audio file the program will test a default song (**Data/test_songs/classical.mp3**).
+
+### Spotify demo mode:
+
+On this mode you can look for a song in Spotify and test the model with a preview of that song. To try it you just need to run <code>python main.py -s</code> on your terminal from the project's folder. 
+
+The program will prompt you for the name of the artist and song, it will then look for it in spotify and show you a list of the top 10 results (in case you're looking for a specific version of the song). Once you choose one of the results, the preview for that song will be downloaded in **Data/unlabelled_songs/** and it will be used to test the model. Certain songs/artists have no previews available in Spotify, just try another song in that case.
 
 # (THIS IS A WORK IN PROGRESS)
 
