@@ -63,6 +63,18 @@ I had some trouble training the Neural Network with this data alone. After all, 
 
 If you want to test this just run <code>python main.py -f</code> on your terminal from the project's folder. This will read all the training songs, split them, extract their features and save them to the *.csv*.
 
+### Training:
+
+I've saved my trained model in the **Models** folder so you can run the test mode directly, but you can also train the model again if you wish to. I used a sequential model with 4 fully connected layers and 3 dropout layers between them. The last layer has 10 weights (based on 10 possible music genres) and gives the output or prediction of the model. If you want to train the model with your own music and want to add/remove genres make sure to modify the network's architecture as well or it won't work.
+
+To train the model run <code>python main.py -t</code> on your terminal from the project's folder. This will read the features *.csv* and prepare the data (normalize it using a standard scaler and split it into train and test samples), then it will train the model and saved the result in the **Models** folder.
+
+The results I got where pretty good as you can see from the accuracy-loss plot and the confusion matrix:
+
+![accuracy-loss](./for_md/1_acc_loss.png)
+
+![confusion_matrix](./for_md/2_conf_matrix.png)
+
 # (THIS IS A WORK IN PROGRESS)
 
 
