@@ -1,10 +1,10 @@
 # Music Classifier
 
-As my final project for Ironhack's Data Analytics Bootcamp I decided to develop a music classification system that would use Neural Networks to predict the genre of new songs. In this repository you can find all the necessary files to run the script and test it yourself. You can also train/test the model with your own music if you wish, I've added a *feature extraction* and a *train/test* mode using **argparse** for that purpose (I will explain how later on).
+As my final project for Ironhack's Data Analytics Bootcamp I decided to develop a music classification system that would use Neural Networks to predict the genre of new songs. In this repository you can find all the necessary files to run the source code and test it yourself. You can also train/test the model with your own music if you wish, I've added a *feature extraction* and a *train/test* mode using **argparse** for that purpose (I will explain how later on).
 
 In the **Presentation/demo_videos/** folder you can find videos showing how my project works. This is a step by step guide for you to follow if you wish to try my **Music Classifier** yourself. On this guide I will also explain the methodology I followed and the results I got:
 
-## 0. Fork/clone this repo:
+## 0. Fork/clone this repo
 As usual, the first step is to fork this repo and clone/download it on your computer. That way you will have the same folder structure and everything should run smoothly if you take into account the following considerations:
 
 ### i. Train data acquisition and conversion:
@@ -49,7 +49,7 @@ I've developed an integration with Sporify's Web API that allows the user to sea
 
 ### Once you're done with this, everything should work like a charm.
 
-## 1. *Feature extraction* and *train* mode:
+## 1. *Feature extraction* and *train* mode
 
 As I mentioned before, you can train the model with your own music if you want to. You just need to make sure to put your music in the **Data/genre/** folder as I previously showed. All files must be correctly labelled. However, if you wish to add new/different genres you'll need to tweak the code a little bit (just modify the *GENRES* dictionary on **feature_extraction.py** and **demo1.py**).
 
@@ -75,11 +75,10 @@ The results I got where pretty good as you can see from the accuracy-loss plot a
 
 ![confusion_matrix](./for_md/2_conf_matrix.png)
 
-## 2. Demo modes:
+## 2. Demo modes
 
-Whether you have already trained the model with your own data or you just want to test my trained model, you can run the demo modes I've developed. Both demos do basically the same thing: they read an audio file of your choice, extract its features, normalize the data, save it to a *.csv* (found in **Features/singel_song_features/**) and then make a prediction with the model. The results are shown on a bar plot that describe the confidence with which the model predicts each of the genres for a single song, just like this one:
+Whether you have already trained the model with your own data or you just want to test my trained model, you can run the demo modes I've developed. Both demos do basically the same thing: they read an audio file of your choice, extract its features, normalize the data, save it to a *.csv* (found in **Features/singel_song_features/**) and then make a prediction with the model. The results are shown on a bar plot (saved in the **Output** folder) that describe the confidence with which the model predicts each of the genres for a single song, just like this one:
 ![results](./for_md/3_prediction.png)
-
 With a little help from my professors I was able to apply threading on this part of the project, which makes it possible to play the test song from terminal (using **mpg123**) while the model makes its predictions.
 
 Now, here's how you run the demo modes:
@@ -94,7 +93,19 @@ On this mode you can look for a song in Spotify and test the model with a previe
 
 The program will prompt you for the name of the artist and song, it will then look for it in spotify and show you a list of the top 10 results (in case you're looking for a specific version of the song). Once you choose one of the results, the preview for that song will be downloaded in **Data/unlabelled_songs/** and it will be used to test the model. Certain songs/artists have no previews available in Spotify, just try another song in that case.
 
-# (THIS IS A WORK IN PROGRESS)
+## Future improvements
+
+I'm quite happy with the outcome of my project, but there's always room for improvement. Some of the next steps are:
+
+* **Enriching the dataset:** when you test the model on more modern songs (specially songs that mix different genres) the predictions can be a little bit off. This is not a surprise considering the limited amount of songs and genres we are training the model with. Also, the songs in the dataset were gathered almost 20 years ago, so it may be a little outdated. Obtaining new songs and genres should be relatively easy using Spotify's previews and will give us a more robust model.
+
+* **Trying new architectures and approach:** this problem can be easily turned into and image classification one. If we obtain the spectogram for each song and save it as a numpy array we could use a convolutional neural network for image classification (such as VGG16). It would be interesting to try this approach and see if we obtain better results.
+
+* **Enabling microphone use:** i want to try using the computer's microphone to listen to a song the user may be playing in another device. This would be specially interesting with live music, sort of a *Shazam* that classifies music by genre rather than guessing name and artist.
+
+I must say I had a lot of fun doing this project and this bootcamp. To me it was the perfect closure for such an amazing experience. I hope you have fun trying out this project.
+
+![Thank_you](https://media.giphy.com/media/YP1ntUTJpCQDmcRpQF/giphy.gif)
 
 
 
