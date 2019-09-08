@@ -47,7 +47,7 @@ I've developed an integration with Sporify's Web API that allows the user to sea
 
 **2. Add your ID and Secret to environment variables:** create a *.env* file in the **root** folder, open it with your favourite text editor and type your ID as *CID = "WhateverYourClientIdIs"* and your Secret as *SECRET = "WhateverYourSecretIs"*.
 
-### Once you're done with this, everything should work like a charm
+### Once you're done with this, everything should work like a charm.
 
 ## 1. *Feature extraction* and *train* mode:
 
@@ -74,6 +74,14 @@ The results I got where pretty good as you can see from the accuracy-loss plot a
 ![accuracy-loss](./for_md/1_acc_loss.png)
 
 ![confusion_matrix](./for_md/2_conf_matrix.png)
+
+## 2. Demo modes:
+
+Whether you have already trained the model with your own data or you just want to test my trained model, you can run the demo modes I've developed. Both demos do basically the same thing: they read an audio file of your choice, extract its features, normalize the data and then make a prediction with the model. The results are shown on a bar plot that describe the confidence with which the model predicts each of the genres for a single song, just like this one:
+![results](./for_md/3_prediction.png)
+
+### Normal demo mode:
+
 
 # (THIS IS A WORK IN PROGRESS)
 
