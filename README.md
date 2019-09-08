@@ -2,7 +2,7 @@
 
 As my final project for Ironhack's Data Analytics Bootcamp I decided to develop a music classification system that would use Neural Networks to predict the genre of new songs. In this repository you can find all the necessary files to run the script and test it yourself. You can also train/test the model with your own music if you wish, I've added a *feature extraction* and a *train/test* mode using **argparse** for that purpose (I will explain how later on).
 
-So, this is a step by step guide for you to follow if you wish to try my **Music Classifier** yourself. On this guide I will also explain the methodology I followed and the results I got:
+In the **Presentation/demo_videos/** folder you can find videos showing how my project works. This is a step by step guide for you to follow if you wish to try my **Music Classifier** yourself. On this guide I will also explain the methodology I followed and the results I got:
 
 ## 0. Fork/clone this repo:
 As usual, the first step is to fork this repo and clone/download it on your computer. That way you will have the same folder structure and everything should run smoothly if you take into account the following considerations:
@@ -57,7 +57,12 @@ I will explain how it works with the original dataset:
 
 ### Feature extraction:
 
-This is the first step of my project and also the first challenge. We are dealing with audio files which we need to "translate" into numbers and other types of data that we can later use to train the Neural Network. I used a library called **Librosa** 
+This is the first step of my project and also the first challenge. We are dealing with audio files which we need to "translate" into numbers and other types of data that we can later use to train the Neural Network. I used a library called **Librosa** to extract a series of features (which I chose after thorough research) from each audio file. Then I calculated certain statistics (mean, standard deviation, kurtosis and skewness) for each of these features and saved them to a *.csv* (which you can find in **Features/dataset_features**). This is the data I trained and tested the model with.
+
+I had some trouble training the Neural Network with this data alone. After all, it was only 99 songs per genre to train with which is not a lot of data. What I did to increase my dataset was splitting each song into 9 different parts before the feature extraction. This way I could have 9 times more data and the accuracy of the model improved by nearly 10%.
+
+If you want to test this just run <code>python main.py -f</code> on your terminal from the project's folder. This will read all the training songs, split them, extract their features and save them to the *.csv*.
+
 # (THIS IS A WORK IN PROGRESS)
 
 
