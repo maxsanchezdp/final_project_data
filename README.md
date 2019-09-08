@@ -15,7 +15,7 @@ Just dowload and extract the files in the **Data** folder of this project. The s
 
 ![file_structure](./for_md/0_file_structure.png)
 
-The dataset consists of 1000 audio tracks each 30 seconds long. It contains 10 genres, each represented by 100 tracks. The tracks are all 22050Hz Mono 16-bit audio files in .wav format. You will also need to convert each file from .au to .wav (I used SoX for this: http://sox.sourceforge.net/).
+The dataset consists of 1000 audio tracks each 30 seconds long. It contains 10 genres, each represented by 100 tracks. The tracks are all 22050Hz Mono 16-bit audio files in *.au* format. You will also need to convert each file from *.au* to *.wav* (I used **SoX** for this: http://sox.sourceforge.net/).
 
 Also, I left out of one song of each genre so I could use them later for testing (you can find these in the **Data/test_songs/** folder), so the actual training of the neural network is done with the first 99 songs of each genre. If you wish to test the training mode, make sure to remove the last song of each genre so you can replicate my results.
 
